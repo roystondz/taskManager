@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="/stylesheets/output.css" rel="stylesheet">
+    <title>Notes App</title>
+</head>
+<body>
+    <div class="w-full min-h-screen main bg-zinc-900">
+        <div class="px-10 py-10 text-white form ">
+            <form action="/create" method="post">
+                <input class="block w-full px-5 py-2 rounded-lg outline-none bg-zinc-800" type="text" placeholder="Title goes here" name="title">
+                <textarea  class="block w-full px-5 py-2 mt-2 rounded-lg outline-none resize-none bg-zinc-800" placeholder="Type your note here..." name="details"></textarea>
+                <input  class="px-2 py-2 mt-2 bg-blue-600 rounded-lg" type="submit" value="Save">
+            </form>
+        </div>
+        <div class="flex flex-wrap gap-3 p-10 tasks">
+            <% if (files.length>0){ %>
+                <% files.map(function(val){%>
+                    <div class="px-3 py-4 rounded-lg task w-72 bg-zinc-800">
+                <h1 class="text-3xl text-white tracking tigher"><%= val %></h1>
+                <div class="flex items-center justify-between w-full">
+                    <a class="inline-block mt-3 text-blue-500" href="/files/<%= val%>">Read more</a>
+                    
+                <a class="inline-block mt-3 text-zinx-600" href="/edit/<%= val%>">Edit</a>
+                </div>
+                <a class="inline-block mt-3 text-red-500" href="/delete/<%= val%>">delete</a>
+            </div>
+                <%}) %>
+            <%} else {%>
+                <h3 class="text-zinc-700">No tasks yet</h3>
+                <%}%>
+            
+            
+        </div>
+    </div>
+    
+</body>
+</html>
